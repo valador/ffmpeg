@@ -22,19 +22,20 @@ LABEL description="FFmpeg GPU Container"
 # $ docker run --gpus all --rm -it xychelsea/ffmpeg-nvidia:latest /bin/bash
 # $ docker push xychelsea/ffmpeg-nvidia:latest
 
-ARG FFMPEG_VERSION="5.0.1"
+ARG FFMPEG_VERSION="5.1.2"
 ENV FFMPEG_VERSION="${FFMPEG_VERSION}"
 
 # Start as root
 USER root
 
 # Update packages
-RUN apt-get update --fix-missing \
-    && apt-get -y upgrade \
-    && apt-get -y dist-upgrade
+# RUN apt-get update --fix-missing \
+#     && apt-get -y upgrade \
+#     && apt-get -y dist-upgrade
 
 # Install dependencies
-RUN apt-get -y install \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     cleancss \
     doxygen \
     debhelper-compat \
@@ -50,7 +51,7 @@ RUN apt-get -y install \
     libcdio-paranoia-dev \
     libchromaprint-dev \
     libcodec2-dev \
-    libdc1394-22-dev \
+    libdc1394-dev \
     libdrm-dev \
     libfdk-aac-dev \
     libffmpeg-nvenc-dev \
