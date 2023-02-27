@@ -14,14 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FROM xychelsea/anaconda3:v0.5.1-gpu-jupyter
+FROM slayerus/anaconda3:nvidiajupyter-1.0
 LABEL description="FFmpeg GPU Container w/ Jupyter Notebooks"
 
 # $ docker build --network=host -t xychelsea/ffmpeg-nvidia:latest-jupyter -f Dockerfile.jupyter .
 # # $ docker run --gpus all --rm -it -d -p 8888:8888 xychelsea/ffmpeg-nvidia:latest-jupyter
 # # $ docker push xychelsea/ffmpeg-nvidia:latest-jupyter
 
-ARG FFMPEG_VERSION="5.0.1"
+ARG FFMPEG_VERSION="5.1.2"
 ENV FFMPEG_VERSION="${FFMPEG_VERSION}"
 
 # Start as root
@@ -49,7 +49,7 @@ RUN apt-get -y install \
     libcdio-paranoia-dev \
     libchromaprint-dev \
     libcodec2-dev \
-    libdc1394-22-dev \
+    libdc1394-dev \
     libdrm-dev \
     libfdk-aac-dev \
     libffmpeg-nvenc-dev \
